@@ -17,7 +17,7 @@
   <meta property="og:title" content="Diabe-APP – Votre compagnon santé au quotidien">
   <meta property="og:description" content="Suivi glycémique, rappels, alimentation IG, activité physique et IMC : tout-en-un pour gérer votre diabète simplement. iOS & Android.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/og-diabeapp.jpg">
+  <meta property="og:image" content="assets/icon.png">
   <meta property="og:locale" content="fr_FR">
 
   <!-- Favicons -->
@@ -44,13 +44,10 @@
       --theme-color: var(--diabe-green);
     }
 
-    /* On garde smooth, mais le JS forcera aussi le scroll */
     html { scroll-behavior: smooth; }
-
-    /* ✅ évite que la section soit cachée sous le header sticky */
     :is(section, div)[id] { scroll-margin-top: 92px; }
 
-    /* ===== MENU UNIQUE ===== */
+    /* ===== MENU DESKTOP ===== */
     .diabe-header{
       position: sticky;
       top: 0;
@@ -127,7 +124,6 @@
       min-width: 280px;
     }
 
-    /* ✅ Burger corrigé */
     .diabe-burger{
       display:none;
       width:44px;
@@ -139,19 +135,138 @@
       justify-content:center;
       box-shadow: 0 8px 18px rgba(0,0,0,.06);
       cursor:pointer;
-      visibility: visible !important;
-      opacity: 1 !important;
     }
 
-    /* IMPORTANT: le template peut cacher des boutons => on force l’affichage */
+    /* ===== RESPONSIVE MOBILE ===== */
     @media (max-width: 992px){
-      .diabe-center{ display:none; }
+      .diabe-left{ min-width: auto; }
       .diabe-email{ display:none; }
+      .diabe-center{ display:none; }
 
-      .diabe-right{ display:flex !important; }
-      .diabe-burger{ display:inline-flex !important; }
+      .diabe-right{
+        min-width: auto;
+        gap: 8px;
+      }
+
+      /* Masquer les boutons desktop sur mobile */
+      .diabe-right .th-btn {
+        display: none !important;
+      }
+
+      /* Afficher uniquement le burger */
+      .diabe-burger{
+        display:inline-flex !important;
+      }
     }
 
+    /* ✅ FIX MENU MOBILE (plein écran + bouton X bien placé) */
+    @media (max-width: 576px){
+      .th-menu-wrapper{
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(11,18,32,.62) !important;
+        z-index: 9999 !important;
+      }
+      .th-menu-area{
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        overflow-y: auto !important;
+        padding-top: 86px !important;
+      }
+      .th-menu-area .th-menu-toggle{
+        position: absolute !important;
+        top: 16px !important;
+        right: 16px !important;
+        left: auto !important;
+        margin: 0 !important;
+        z-index: 5 !important;
+      }
+      .th-menu-area .mobile-logo{
+        margin-top: -64px !important;
+        margin-bottom: 18px !important;
+      }
+      .th-mobile-menu ul{ padding-left: 0 !important; }
+    }
+
+    /* ===== BANNIÈRE INDICATEURS ===== */
+    .stats-banner {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 40px 0;
+      margin-bottom: 0;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .stat-card.loaded {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 8px 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .stat-number {
+        font-size: 36px;
+      }
+
+      .stat-label {
+        font-size: 14px;
+      }
+    }
 
     .hero-lead{ opacity:.92; max-width: 560px; font-size: 16px; line-height: 1.7; }
 
@@ -179,6 +294,8 @@
           <li><a href="#features">Fonctionnalités</a></li>
           <li><a href="#testimonials">Témoignages</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="#download">Télécharger</a></li>
+          <li><a href="#support">Soutenir</a></li>
         </ul>
       </div>
     </div>
@@ -195,10 +312,10 @@
             <img src="assets/icon.png" alt="Diabe-APP">
             <span>Diabe-APP</span>
           </a>
-          <a class="diabe-email" href="mailto:support@diabeapp.com">
+          <!-- <a class="diabe-email" href="mailto:support@diabeapp.com">
             <i class="fa-solid fa-envelope"></i>
             <span>support@diabeapp.com</span>
-          </a>
+          </a> -->
         </div>
 
         <!-- Milieu -->
@@ -220,11 +337,9 @@
             Soutenir <i class="fa-solid fa-heart ms-2"></i>
           </a>
 
-         <button class="diabe-burger" data-open-mobile-menu aria-label="Ouvrir le menu">
+          <button class="diabe-burger" data-open-mobile-menu aria-label="Ouvrir le menu">
             <i class="fa-solid fa-bars"></i>
           </button>
-
-
         </div>
 
       </div>
@@ -250,17 +365,17 @@
                         <span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s">Bienvenue sur Diabe-App</span>
                         <h3 data-ani="slideinup" data-ani-delay="0.4s">Mieux vivre avec le diabète, au quotidien</h3>
                         <p class="hero-text" data-ani="slideinup" data-ani-delay="0.6s">
-                          Suivi glycémique, rappels de traitement, ressources fiables et outils pratiques — une expérience simple, claire et rassurante.
+                          Suivi glycémique, rappels de traitement, ressources fiables et outils pratiques – une expérience simple, claire et rassurante.
                         </p>
                         <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
-                          <a href="#download" class="th-btn">Télécharger l’app <i class="fa-solid fa-download ms-2"></i></a>
+                          <a href="#download" class="th-btn">Télécharger l'app <i class="fa-solid fa-download ms-2"></i></a>
                           <a href="#features" class="th-btn th-border2">Découvrir les fonctionnalités <i class="fa-light fa-arrow-right-long ms-2"></i></a>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="hero-image" data-ani="slideinup" data-ani-delay="0.4s">
-                    <img src="assets/img/app/screens/rappel1.png" alt="Aperçu de l’application" />
+                    <img src="assets/img/app/screens/rappel1.png" alt="Aperçu de l'application" />
                   </div>
                 </div>
               </div>
@@ -273,7 +388,7 @@
                     <div class="col-xl-12">
                       <div class="hero-style7">
                         <span class="sub-title" data-ani="slideinup" data-ani-delay="0.2s">Suivi & compréhension</span>
-                        <h3 data-ani="slideinup" data-ani-delay="0.4s">Une bibliothèque d’articles clairs et fiables pour vous guider.</h3>
+                        <h3 data-ani="slideinup" data-ani-delay="0.4s">Une bibliothèque d'articles clairs et fiables pour vous guider.</h3>
                         <div class="btn-group" data-ani="slideinup" data-ani-delay="0.8s">
                           <a href="#blog-sec" class="th-btn">Voir les ressources <i class="fa-solid fa-book-open ms-2"></i></a>
                           <a href="#faq" class="th-btn th-border2">Questions fréquentes <i class="fa-light fa-arrow-right-long ms-2"></i></a>
@@ -370,10 +485,10 @@
         <div class="col-xl-8">
           <div class="title-area text-center">
             <span class="sub-title text-white">Fonctionnalités clés</span>
-            <h2 class="sec-title text-white">L’essentiel pour un suivi complet</h2>
+            <h2 class="sec-title text-white">L'essentiel pour un suivi complet</h2>
             <p class="text-white-50">Mesurez, analysez et adoptez de meilleurs réflexes avec une app claire et simple.</p>
           </div>
-        </div> 
+        </div>
       </div>
 
       <div class="row gy-4 justify-content-center">
@@ -422,7 +537,7 @@
             <div class="box-icon"><i class="fa-solid fa-person-running"></i></div>
             <div class="box-content">
               <h3 class="box-title">Activité Physique</h3>
-              <p class="box-text">Avant / pendant / après l’exercice + gestion des situations d’urgence.</p>
+              <p class="box-text">Avant / pendant / après l'exercice + gestion des situations d'urgence.</p>
             </div>
           </div>
         </div>
@@ -432,7 +547,7 @@
             <div class="box-icon"><i class="fa-solid fa-calculator"></i></div>
             <div class="box-content">
               <h3 class="box-title">Calcul IMC</h3>
-              <p class="box-text">Calculez votre IMC et consultez un tableau d’interprétation simple.</p>
+              <p class="box-text">Calculez votre IMC et consultez un tableau d'interprétation simple.</p>
             </div>
           </div>
         </div>
@@ -467,7 +582,7 @@
           <div class="swiper-slide" data-theme-color="#E7F6F4">
             <div class="testi-card6">
               <div class="box-quote"><i class="fa-solid fa-quote-left diabeapp-quote"></i></div>
-              <p class="box-text">« L’app m’aide à garder une routine simple : rappels, conseils et articles courts. Je me sens plus sereine au quotidien. »</p>
+              <p class="box-text">« L'app m'aide à garder une routine simple : rappels, conseils et articles courts. Je me sens plus sereine au quotidien. »</p>
               <div class="box-img"><img src="assets/img/testimonial/testi_7_1.png" alt="Avatar" /></div>
               <h3 class="box-title">Sarah M.</h3>
               <p class="box-desig">Utilisateur</p>
@@ -484,7 +599,7 @@
           <div class="swiper-slide" data-theme-color="#EAF6E3">
             <div class="testi-card6">
               <div class="box-quote"><i class="fa-solid fa-quote-left diabeapp-quote"></i></div>
-              <p class="box-text">« Les articles sont super clairs. J’ai enfin compris des notions comme l’IG, les hypos et comment gérer les repas au restaurant. »</p>
+              <p class="box-text">« Les articles sont super clairs. J'ai enfin compris des notions comme l'IG, les hypos et comment gérer les repas au restaurant. »</p>
               <div class="box-img"><img src="assets/img/testimonial/testi_7_2.png" alt="Avatar" /></div>
               <h3 class="box-title">Lucas P.</h3>
               <p class="box-desig">Utilisateur</p>
@@ -501,7 +616,7 @@
           <div class="swiper-slide" data-theme-color="#FFF2F2">
             <div class="testi-card6">
               <div class="box-quote"><i class="fa-solid fa-quote-left diabeapp-quote"></i></div>
-              <p class="box-text">« J’aime le côté “pratique”. C’est rassurant d’avoir des repères et des conseils simples quand on est en déplacement. »</p>
+              <p class="box-text">« J'aime le côté "pratique". C'est rassurant d'avoir des repères et des conseils simples quand on est en déplacement. »</p>
               <div class="box-img"><img src="assets/img/testimonial/testi_7_3.png" alt="Avatar" /></div>
               <h3 class="box-title">Monika D.</h3>
               <p class="box-desig">Utilisateur</p>
@@ -523,153 +638,151 @@
   </section>
 
   <!-- ✅ FAQ : ID = faq (important pour le menu) -->
-      <div class="faq-area overflow-hidden" id="faq">
-        <div class="container">
-          <div class="row align-items-center flex-row-reverse">
-            <div class="col-xl-6">
-              <div class="faq-img7">
-                <img src="assets/img/diet/faq_7.jpg" alt="FAQ Diabe-App" />
-              </div>
-            </div>
-
-            <div class="col-xl-6">
-      <div class="faq-area2 me-xxl-5 pe-xxl-5">
-        <div class="title-area mb-40">
-          <span class="sub-title text-anime-style-2">FAQ</span>
-          <h2 class="sec-title text-anime-style-3">Questions <span class="fw-normal">fréquentes</span></h2>
+  <div class="faq-area overflow-hidden" id="faq">
+    <div class="container">
+      <div class="row align-items-center flex-row-reverse">
+        <div class="col-xl-6">
+          <div class="faq-img7">
+            <img src="assets/img/diet/faq_7.jpg" alt="FAQ Diabe-App" />
+          </div>
         </div>
 
-        <div class="accordion-area accordion" id="faqAccordion">
-
-          <div class="accordion-card wow fadeInUp" data-wow-delay=".1s">
-            <div class="accordion-header" id="collapse-item-1">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
-                1. Diabe-App remplace-t-elle mon médecin ?
-              </button>
+        <div class="col-xl-6">
+          <div class="faq-area2 me-xxl-5 pe-xxl-5">
+            <div class="title-area mb-40">
+              <span class="sub-title text-anime-style-2">FAQ</span>
+              <h2 class="sec-title text-anime-style-3">Questions <span class="fw-normal">fréquentes</span></h2>
             </div>
-            <div id="collapse-1" class="accordion-collapse collapse" aria-labelledby="collapse-item-1" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                <p class="faq-text">
-                  Non. Diabe-App est un outil d’accompagnement (suivi, rappels, contenus éducatifs).
-                  Pour toute décision médicale, ajustement de traitement ou symptôme inhabituel, consultez un professionnel de santé.
-                </p>
+
+            <div class="accordion-area accordion" id="faqAccordion">
+
+              <div class="accordion-card wow fadeInUp" data-wow-delay=".1s">
+                <div class="accordion-header" id="collapse-item-1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
+                    1. Diabe-App remplace-t-elle mon médecin ?
+                  </button>
+                </div>
+                <div id="collapse-1" class="accordion-collapse collapse" aria-labelledby="collapse-item-1" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p class="faq-text">
+                      Non. Diabe-App est un outil d'accompagnement (suivi, rappels, contenus éducatifs).
+                      Pour toute décision médicale, ajustement de traitement ou symptôme inhabituel, consultez un professionnel de santé.
+                    </p>
+                  </div>
+                </div>
               </div>
+
+              <div class="accordion-card active wow fadeInUp" data-wow-delay=".3s">
+                <div class="accordion-header" id="collapse-item-2">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
+                    2. À qui s'adresse l'application ?
+                  </button>
+                </div>
+                <div id="collapse-2" class="accordion-collapse collapse show" aria-labelledby="collapse-item-2" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p class="faq-text">
+                      L'application est destinée aussi bien aux personnes diabétiques (type 1, type 2, prédiabète, diabète gestationnel),
+                      qu'aux personnes non diabétiques souhaitant s'informer et adopter de bonnes habitudes pour prévenir le diabète.
+                      Elle est également utile aux proches désirant mieux comprendre et accompagner.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-card wow fadeInUp" data-wow-delay=".5s">
+                <div class="accordion-header" id="collapse-item-3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                    3. Les contenus sont-ils adaptés et faciles à lire ?
+                  </button>
+                </div>
+                <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="collapse-item-3" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p class="faq-text">
+                      Oui : des articles courts (3–5 min) organisés par thèmes (prévention, nutrition, traitements, complications, etc.)
+                      avec des conseils pratiques accessibles à tous.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-card wow fadeInUp" data-wow-delay=".7s">
+                <div class="accordion-header" id="collapse-item-4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                    4. Puis-je utiliser l'app en voyage ?
+                  </button>
+                </div>
+                <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="collapse-item-4" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p class="faq-text">
+                      Oui. Diabe-App met l'accent sur des check-lists et conseils pratiques
+                      (préparer son traitement, alimentation équilibrée, activité physique, etc.).
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-card wow fadeInUp" data-wow-delay=".8s">
+                <div class="accordion-header" id="collapse-item-5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                    5. Puis-je utiliser Diabe-App même si je ne suis pas diabétique ?
+                  </button>
+                </div>
+                <div id="collapse-5" class="accordion-collapse collapse" aria-labelledby="collapse-item-5" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p class="faq-text">
+                      Absolument. Diabe-App propose des contenus de prévention pour aider à adopter un mode de vie sain,
+                      réduire les risques de diabète et mieux comprendre cette maladie.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-card wow fadeInUp" data-wow-delay=".9s">
+                <div class="accordion-header" id="collapse-item-6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
+                    6. Mes données sont-elles sécurisées ?
+                  </button>
+                </div>
+                <div id="collapse-6" class="accordion-collapse collapse" aria-labelledby="collapse-item-6" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p class="faq-text">
+                      Oui. La confidentialité est une priorité : vos informations personnelles sont protégées
+                      et ne sont jamais partagées sans votre consentement.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-card wow fadeInUp" data-wow-delay="1s">
+                <div class="accordion-header" id="collapse-item-7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
+                    7. Comment soutenir le projet ?
+                  </button>
+                </div>
+                <div id="collapse-7" class="accordion-collapse collapse" aria-labelledby="collapse-item-7" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    <p class="faq-text">
+                      Vous pouvez partager Diabe-App autour de vous, envoyer vos retours ou faire un don de soutien.
+                      Chaque contribution aide à améliorer les contenus et fonctionnalités.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
+        </div>
 
-          <div class="accordion-card active wow fadeInUp" data-wow-delay=".3s">
-            <div class="accordion-header" id="collapse-item-2">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
-                2. À qui s’adresse l’application ?
-              </button>
-            </div>
-            <div id="collapse-2" class="accordion-collapse collapse show" aria-labelledby="collapse-item-2" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                <p class="faq-text">
-                  L’application est destinée aussi bien aux personnes diabétiques (type 1, type 2, prédiabète, diabète gestationnel),
-                  qu’aux personnes non diabétiques souhaitant s’informer et adopter de bonnes habitudes pour prévenir le diabète.
-                  Elle est également utile aux proches désirant mieux comprendre et accompagner.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-card wow fadeInUp" data-wow-delay=".5s">
-            <div class="accordion-header" id="collapse-item-3">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-                3. Les contenus sont-ils adaptés et faciles à lire ?
-              </button>
-            </div>
-            <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="collapse-item-3" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                <p class="faq-text">
-                  Oui : des articles courts (3–5 min) organisés par thèmes (prévention, nutrition, traitements, complications, etc.)
-                  avec des conseils pratiques accessibles à tous.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-card wow fadeInUp" data-wow-delay=".7s">
-            <div class="accordion-header" id="collapse-item-4">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-                4. Puis-je utiliser l’app en voyage ?
-              </button>
-            </div>
-            <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="collapse-item-4" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                <p class="faq-text">
-                  Oui. Diabe-App met l’accent sur des check-lists et conseils pratiques
-                  (préparer son traitement, alimentation équilibrée, activité physique, etc.).
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Nouvelle question -->
-          <div class="accordion-card wow fadeInUp" data-wow-delay=".8s">
-            <div class="accordion-header" id="collapse-item-5">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
-                5. Puis-je utiliser Diabe-App même si je ne suis pas diabétique ?
-              </button>
-            </div>
-            <div id="collapse-5" class="accordion-collapse collapse" aria-labelledby="collapse-item-5" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                <p class="faq-text">
-                  Absolument. Diabe-App propose des contenus de prévention pour aider à adopter un mode de vie sain,
-                  réduire les risques de diabète et mieux comprendre cette maladie.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Nouvelle question -->
-          <div class="accordion-card wow fadeInUp" data-wow-delay=".9s">
-            <div class="accordion-header" id="collapse-item-6">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
-                6. Mes données sont-elles sécurisées ?
-              </button>
-            </div>
-            <div id="collapse-6" class="accordion-collapse collapse" aria-labelledby="collapse-item-6" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                <p class="faq-text">
-                  Oui. La confidentialité est une priorité : vos informations personnelles sont protégées
-                  et ne sont jamais partagées sans votre consentement.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-card wow fadeInUp" data-wow-delay="1s">
-            <div class="accordion-header" id="collapse-item-7">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
-                7. Comment soutenir le projet ?
-              </button>
-            </div>
-            <div id="collapse-7" class="accordion-collapse collapse" aria-labelledby="collapse-item-7" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                <p class="faq-text">
-                  Vous pouvez partager Diabe-App autour de vous, envoyer vos retours ou faire un don de soutien.
-                  Chaque contribution aide à améliorer les contenus et fonctionnalités.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- accordion -->
       </div>
     </div>
-
-          </div>
-        </div>
-      </div>
+  </div>
 
   <!-- Blog -->
   <section class="positive-relative overflow-hidden space overflow-hidden" id="blog-sec">
@@ -752,6 +865,98 @@
     </div>
   </section>
 
+  <!-- ✅ BANNIÈRE INDICATEURS -->
+  <section class="stats-banner" style="
+        background:linear-gradient(135deg,#0b1220,#111827);
+        padding:50px 0;
+        ">
+
+        <div class="stats-container" style="
+        max-width:1200px;
+        margin:auto;
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:20px;
+        padding:0 20px;
+        ">
+
+        <!-- CARD -->
+        <div class="stat-card" style="
+        background:rgba(255,255,255,.06);
+        border-radius:18px;
+        padding:30px 20px;
+        text-align:center;
+        backdrop-filter:blur(10px);
+        box-shadow:0 10px 30px rgba(0,0,0,.35);
+        ">
+
+        <h3 class="stat-number"
+            data-count="10"
+            data-format="kplus"
+            style="
+              font-size:42px;
+              margin:0;
+              font-weight:900;
+              background:linear-gradient(135deg,#22B573,#34D399,#16A34A);
+              -webkit-background-clip:text;
+              -webkit-text-fill-color:transparent;
+            ">0</h3>
+
+        <p class="stat-label" style="
+        margin-top:10px;
+        color:#cbd5e1;
+        font-weight:600;
+        ">
+        Utilisateurs
+        </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="stat-card" style="background:rgba(255,255,255,.06);border-radius:18px;padding:30px 20px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35);">
+
+        <h3 class="stat-number"
+            data-count="4.8"
+            data-format="score"
+            style="font-size:42px;margin:0;font-weight:900;background:linear-gradient(135deg,#22B573,#34D399,#16A34A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</h3>
+
+        <p class="stat-label" style="margin-top:10px;color:#cbd5e1;font-weight:600;">
+        Note moyenne
+        </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="stat-card" style="background:rgba(255,255,255,.06);border-radius:18px;padding:30px 20px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35);">
+
+        <h3 class="stat-number"
+            data-count="100"
+            data-format="percent"
+            style="font-size:42px;margin:0;font-weight:900;background:linear-gradient(135deg,#22B573,#34D399,#16A34A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</h3>
+
+        <p class="stat-label" style="margin-top:10px;color:#cbd5e1;font-weight:600;">
+        Simple à utiliser
+        </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="stat-card" style="background:rgba(255,255,255,.06);border-radius:18px;padding:30px 20px;text-align:center;backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35);">
+
+        <h3 class="stat-number"
+            data-count="100"
+            data-format="percent"
+            style="font-size:42px;margin:0;font-weight:900;background:linear-gradient(135deg,#22B573,#34D399,#16A34A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">0</h3>
+
+        <p class="stat-label" style="margin-top:10px;color:#cbd5e1;font-weight:600;">
+        Suivi quotidien
+        </p>
+
+        </div>
+
+        </div>
+  </section>
+
   <!-- Footer / Download -->
   <footer class="footer-wrapper footer-layout2" id="download">
     <div class="footer-top">
@@ -760,7 +965,7 @@
           <div class="col-lg-5">
             <div class="title-area mb-0 text-center text-lg-start">
               <h4 class="sec-title text-white m-0">Téléchargez Diabe-App dès maintenant</h4>
-              <p class="text-white-50 mt-2 mb-0">Disponible sur Android & iOS (liens à remplacer par tes URLs store).</p>
+              <p class="text-white-50 mt-2 mb-0">Disponible sur Android & iOS</p>
             </div>
           </div>
 
@@ -785,12 +990,20 @@
       </div>
     </div>
 
-    <!-- ✅ Support (ancre pour bouton "Soutenir") -->
     <div class="container" id="support">
       <div class="row gy-2 justify-content-center justify-content-md-between align-items-center">
         <div class="col-md-7 col-lg-6 text-center text-md-start">
           <div class="social-links">
-            <span class="title">support@diabeapp.com</span>
+            <i class="fa-solid fa-envelope"
+               style="
+                 background: linear-gradient(135deg,#22B573,#34D399,#16A34A);
+                 -webkit-background-clip:text;
+                 background-clip:text;
+                 -webkit-text-fill-color:transparent;
+                 display:inline-block;
+               "></i>
+            <span class="title"> support@diabeapp.com</span>
+
             <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
             <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
@@ -812,7 +1025,7 @@
           <div class="col-lg-6">
             <p class="copyright-text">
               Copyright <i class="fal fa-copyright"></i> 2026
-              <a href="#hero">Diabe-App</a>. Designed by Savio MILANDOU
+              <a href="#hero">Diabe-App</a> - Designed by <i class="fa-solid fa-user-circle"></i> Savio MILANDOU
             </p>
           </div>
           <div class="col-lg-6 text-center text-lg-end">
@@ -829,7 +1042,6 @@
     </div>
   </footer>
 
-  <!-- Scroll top -->
   <div class="scroll-top">
     <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
       <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
@@ -837,31 +1049,71 @@
     </svg>
   </div>
 
-  <!-- Scripts -->
   <script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
   <script src="assets/js/app.min.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!-- ✅ FIX: Scroll animé “robuste” (force le scroll même si le template bloque) -->
   <script>
-      (function () {
-        document.addEventListener('click', function (e) {
-          const openBtn = e.target.closest('[data-open-mobile-menu]');
-          if (!openBtn) return;
+    // Animation des cartes statistiques + compteur (au chargement)
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const statCards = document.querySelectorAll('.stat-card');
+        statCards.forEach(card => card.classList.add('loaded'));
 
-          // Le template utilise .th-menu-toggle pour ouvrir/fermer.
-          // On clique le bouton "X" dans le menu : il toggle (ouvre/ferme).
-          const templateToggle = document.querySelector('.th-menu-wrapper .th-menu-toggle');
-          if (templateToggle) templateToggle.click();
-        });
-      })();
+        // ✅ Compteur jQuery robuste (évite conflits $)
+        if (typeof jQuery !== "undefined") {
+          (function($){
+            function formatValue(val, format) {
+              if (format === "kplus") return Math.round(val) + "K+";
+              if (format === "score") return val.toFixed(1) + "/5";
+              if (format === "percent") return Math.round(val) + "%";
+              return Math.round(val);
+            }
 
+            $(".stat-number").each(function(i){
+              var $el = $(this);
+              var target = parseFloat($el.attr("data-count") || "0");
+              var format = $el.attr("data-format") || "";
+              var duration = 1400 + (i * 250);
+
+              // reset à chaque refresh
+              $el.text(formatValue(0, format));
+
+              $({ n: 0 }).animate({ n: target }, {
+                duration: duration,
+                easing: "swing",
+                step: function () {
+                  $el.text(formatValue(this.n, format));
+                },
+                complete: function () {
+                  $el.text(formatValue(target, format));
+                }
+              });
+            });
+          })(jQuery);
+        }
+
+      }, 300);
+    });
+
+    // Menu mobile
+    (function () {
+      document.addEventListener('click', function (e) {
+        const openBtn = e.target.closest('[data-open-mobile-menu]');
+        if (!openBtn) return;
+
+        const templateToggle = document.querySelector('.th-menu-wrapper .th-menu-toggle');
+        if (templateToggle) templateToggle.click();
+      });
+    })();
+
+    // Scroll animé
     (function () {
       const header = document.querySelector('.diabe-header');
 
       function getHeaderOffset() {
         if (!header) return 0;
-        return header.getBoundingClientRect().height + 10; // +10px marge
+        return header.getBoundingClientRect().height + 10;
       }
 
       function smoothScrollToEl(el) {
@@ -870,7 +1122,6 @@
         window.scrollTo({ top, behavior: 'smooth' });
       }
 
-      // Interception en CAPTURE pour passer AVANT les scripts du template
       document.addEventListener('click', function (e) {
         const link = e.target.closest('a[href^="#"]');
         if (!link) return;
@@ -880,32 +1131,24 @@
 
         const id = hash.slice(1);
         const target = document.getElementById(id);
-        if (!target) return; // si l'id n'existe pas, on laisse le comportement normal
+        if (!target) return;
 
-        // IMPORTANT: on bloque le saut natif + on force l'animation
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
 
-        // met à jour l'URL sans saut
         history.pushState(null, '', hash);
-
-        // scroll animé
         smoothScrollToEl(target);
 
-        // Ferme le menu mobile (si ouvert)
-        // Beaucoup de templates ouvrent le menu via une classe sur body
         const closeBtn = document.querySelector('.th-menu-area .th-menu-toggle');
         if (closeBtn && document.body.classList.contains('th-menu-open')) {
           closeBtn.click();
         } else {
-          // fallback: si pas de classe, on tente quand même
           const wrapper = document.querySelector('.th-menu-wrapper');
           if (wrapper && wrapper.classList.contains('open')) closeBtn?.click();
         }
-      }, true); // ✅ capture = true
+      }, true);
 
-      // Si on arrive directement avec un hash dans l'URL
       window.addEventListener('load', function () {
         if (location.hash && location.hash.length > 1) {
           const id = location.hash.slice(1);

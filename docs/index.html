@@ -1031,19 +1031,111 @@
               <a href="#hero">Diabe-App</a> - Designed by <i class="fa-solid fa-user-circle"></i> Savio MILANDOU
             </p>
           </div>
-          <div class="col-lg-6 text-center text-lg-end">
-            <div class="footer-links">
-              <ul>
-                <li><a href="#">Conditions d'utilisation</a></li>
-                <li><a href="#">Politique de confidentialité</a></li>
-                <li><a href="#">Cookies</a></li>
-              </ul>
-            </div>
-          </div>
+                     <div class="col-lg-6 text-center text-lg-end">
+                        <div class="footer-links">
+                        <ul>
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#mentionsLegalesModal">Conditions d'utilisation</a></li>
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#confidentialiteModal">Politique de confidentialité</a></li>
+                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#cookiesModal">Cookies</a></li>
+                        </ul>
+                        </div>
+                    </div>
         </div>
       </div>
     </div>
   </footer>
+
+              <!-- Modal Mentions Légales / Conditions d'utilisation -->
+              <div class="modal fade" id="mentionsLegalesModal" tabindex="-1" aria-labelledby="mentionsLegalesModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="mentionsLegalesModalLabel">Mentions légales</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                      <h6>Éditeur du site</h6>
+                      <p>
+                        <strong>Diabe-App</strong><br>
+                        SASU<br>
+                        SIRET : En cours d'immatriculation<br>
+                        Siège social : Choisy-le-Roi, France<br>
+                        Email : contact@diabeapp.com
+                      </p>
+
+                      <h6>Direction de la publication</h6>
+                      <p>SavioTech</p>
+
+                      <h6>Hébergement</h6>
+                      <p>
+                        <strong>Infomaniak Network SA</strong><br>
+                        Rue Eugène-Marziano 25<br>
+                        1227 Genève, Suisse<br>
+                        <a href="https://www.infomaniak.com" target="_blank" rel="noopener">www.infomaniak.com</a>
+                      </p>
+
+                      <h6>Propriété intellectuelle</h6>
+                      <p>L'ensemble du contenu de ce site (textes, images, logo) est la propriété exclusive de Diabe-App, sauf mention contraire. Toute reproduction est interdite sans autorisation préalable.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal Confidentialité -->
+              <div class="modal fade" id="confidentialiteModal" tabindex="-1" aria-labelledby="confidentialiteModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="confidentialiteModalLabel">Politique de confidentialité</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                      <h6>Données collectées</h6>
+                      <p>Lorsque vous utilisez notre formulaire de contact, nous collectons les informations suivantes : nom et prénom, email, téléphone, profil (optionnel) et votre message. Ces données sont utilisées uniquement pour répondre à votre demande.</p>
+
+                      <h6>Utilisation des données</h6>
+                      <p>Vos données personnelles ne sont jamais vendues, louées ou partagées avec des tiers. Elles sont conservées uniquement le temps nécessaire au traitement de votre demande.</p>
+
+                      <h6>Vos droits</h6>
+                      <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@diabeapp.com">contact@diabeapp.com</a></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal Cookies -->
+              <div class="modal fade" id="cookiesModal" tabindex="-1" aria-labelledby="cookiesModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="cookiesModalLabel">Politique de cookies</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                      <h6>Utilisation des cookies</h6>
+                      <p>Ce site n'utilise pas de cookies de tracking ni de cookies publicitaires. Seuls des cookies techniques essentiels au fonctionnement du site peuvent être utilisés.</p>
+
+                      <h6>Cookies techniques</h6>
+                      <p>Les cookies techniques sont nécessaires au bon fonctionnement du site. Ils permettent notamment de maintenir votre session active et de mémoriser vos préférences de navigation.</p>
+
+                      <h6>Gestion des cookies</h6>
+                      <p>Vous pouvez à tout moment configurer votre navigateur pour refuser les cookies. Cependant, cela peut affecter certaines fonctionnalités du site.</p>
+
+                      <h6>Durée de conservation</h6>
+                      <p>Les cookies techniques sont conservés pour une durée maximale de 13 mois, conformément aux recommandations de la CNIL.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
   <div class="scroll-top">
     <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
